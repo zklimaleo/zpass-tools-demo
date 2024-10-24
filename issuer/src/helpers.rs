@@ -87,7 +87,7 @@ pub(crate) fn create_hash(value: Value<CurrentNetwork>, algorithm: HashAlgorithm
                 .map_err(|e| anyhow!("Failed hash_to_group_bhp256 conversion: {}", e))?;
             let literal_group_from_bhp = Literal::Group(bhp_group);
             let casted_to_field = literal_group_from_bhp
-                .cast_lossy(snarkvm::prelude::LiteralType::Field)
+                .cast_lossy(snarkvm_console::program::LiteralType::Field)
                 .map_err(|e| anyhow!("Failed cast_lossy conversion: {}", e))?;
 
             casted_to_field.to_string()
@@ -100,7 +100,7 @@ pub(crate) fn create_hash(value: Value<CurrentNetwork>, algorithm: HashAlgorithm
                 .map_err(|e| anyhow!("Failed hash_to_group_bhp256 conversion: {}", e))?;
             let literal_group_from_bhp = Literal::Group(bhp_group);
             let casted_to_field = literal_group_from_bhp
-                .cast_lossy(snarkvm::prelude::LiteralType::Field)
+                .cast_lossy(snarkvm_console::program::LiteralType::Field)
                 .map_err(|e| anyhow!("Failed cast_lossy conversion: {}", e))?;
 
             casted_to_field.to_string()

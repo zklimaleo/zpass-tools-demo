@@ -14,10 +14,15 @@ use std::convert::TryFrom;
 use std::str::FromStr;
 
 // External crate imports
-use snarkvm::prelude::{
-    Address, Field, Identifier, Literal, Network, Plaintext, PrivateKey, Scalar, Signature, TestRng,
-    Testnet3 as CurrentNetwork, ToBits, ToFields, Uniform, Value, Zero, U32
+use snarkvm_console::{
+    network::{MainnetV0 as CurrentNetwork, Network, environment::ToFields},
+    types::{Address, Field, Scalar, U32},
+    program::{Identifier, Literal, Plaintext, Value},
+    account::{PrivateKey, Signature},
+    prelude::Zero
 };
+use snarkvm_utilities::{TestRng, ToBits, Uniform};
+
 use indexmap::IndexMap;
 use wasm_bindgen::prelude::*;
 use serde::{Deserialize, Serialize};

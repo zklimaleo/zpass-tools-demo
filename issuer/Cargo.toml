@@ -11,25 +11,15 @@ crate-type = ["cdylib", "rlib"]
 [features]
 default = ["console_error_panic_hook"]
 
-
-[dependencies.snarkvm]
-version = "0.15.4"
+[dependencies.snarkvm-console]
+version = "1.0.0"
 default-features = false
-features = [
-    "circuit",
-    "console",
-    "ledger",
-    "parameters",
-    "synthesizer",
-    "utilities",
-    "wasm",
-    "anyhow",
-    "colored",
-    "rand",
-    "serde_json",
-    "thiserror",
-    "dotenvy",
-]
+features = ["wasm", "account", "network", "types", "program"]
+
+[dependencies.snarkvm-utilities]
+version = "1.0.0"
+default-features = false
+features = ["wasm"]
 
 [dependencies]
 console_error_panic_hook = { version = "0.1.7", optional = true }
