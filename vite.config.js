@@ -8,13 +8,31 @@ export default defineConfig({
   worker: {
     format: 'es',
   },
-  plugins: [wasm(), WebWorkerPlugin(), react()],
+  plugins: [
+    wasm(),
+    WebWorkerPlugin(),
+    react(),
+    {
+      name: 'handle-core-js-import',
+      enforce: 'pre',
+      resolveId(source) {
+        if (source === 'core-js/proposals/json-parse-with-source.js') {
+          return 'core-js/actual/json/parse';
+        }
+      }
+    }
+  ],
+  resolve: {
+    alias: {
+      'core-js/proposals/json-parse-with-source.js': 'core-js/actual/json/parse'
+    }
+  },
   build: {
     target: 'esnext',
     sourcemap: true,
   },
   optimizeDeps: {
-    exclude: ['@aleohq/wasm', '@aleohq/sdk'],
+    exclude: ['@provablehq/wasm', '@provablehq/sdk'],
   },
   server: {
     headers: {

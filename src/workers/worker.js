@@ -1,4 +1,4 @@
-import * as aleo from '@aleohq/sdk';
+import * as aleo from '@provablehq/sdk';
 
 await aleo.initThreadPool();
 
@@ -57,11 +57,11 @@ self.addEventListener('message', (ev) => {
         });
 
         // Execute the function locally
-        let response = await programManager.executeOffline(
+        let response = await programManager.run(
           localProgram,
           aleoFunction,
           inputs,
-          false,
+          true,
           imports,
           keyParams,
           undefined,
@@ -76,14 +76,14 @@ self.addEventListener('message', (ev) => {
         const outputs = response.getOutputs();
         let execution = response.getExecution();
         if (execution) {
-          aleo.verifyFunctionExecution(
+          let res = aleo.verifyFunctionExecution(
             execution,
             keyProvider.getKeys(cacheKey)[1],
             program,
-            'hello'
+            'verify'
           );
           execution = execution.toString();
-          console.log('Execution verified successfully: ' + execution);
+          console.log('Execution verified successfully: ' + res + '\n' + execution);
         } else {
           execution = '';
         }
