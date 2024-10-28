@@ -23,7 +23,7 @@ export const LoadProgram = ({ onResponse, clearSelect }) => {
     }
 
     setIsLoading(true);
-    const url = `https://api.explorer.aleo.org/v1/testnet3/program/${value}`;
+    const url = `https://api.explorer.aleo.org/v1/testnet/program/${value}`;
 
     axios
       .get(url)

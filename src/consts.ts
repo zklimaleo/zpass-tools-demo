@@ -20,7 +20,8 @@ function verify:
     input r1 as Credentials.private;
     hash.keccak256 r1 into r2 as field;
     call signature_verification r2 r0 r1.issuer into r3;
-    output r3 as boolean.private;
+    assert.eq r3 true;
+    output r3 as boolean.public;
 
 `;
 
@@ -46,7 +47,8 @@ function verify:
     input r1 as Credentials.private;
     hash.sha3_256 r1 into r2 as field;
     call signature_verification r2 r0 r1.issuer into r3;
-    output r3 as boolean.private;
+    assert.eq r3 true;
+    output r3 as boolean.public;
 `;
 
 export const SIGVERIFY_PROGRAM = `
@@ -81,5 +83,6 @@ function verify:
     input r2 as Credentials.private;
     call get_hash r1 r2 into r3;
     call signature_verification r3 r0 r2.issuer into r4;
-    output r4 as boolean.private;
+    assert.eq r4 true;
+    output r4 as boolean.public;
 `;

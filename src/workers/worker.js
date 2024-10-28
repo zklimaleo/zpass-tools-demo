@@ -2,7 +2,7 @@ import * as aleo from '@provablehq/sdk';
 
 await aleo.initThreadPool();
 
-const defaultHost = 'https://api.explorer.aleo.org/v1';
+const defaultHost = 'https://api.explorer.provable.com/v1';
 const keyProvider = new aleo.AleoKeyProvider();
 const programManager = new aleo.ProgramManager(
   defaultHost,
@@ -75,6 +75,7 @@ self.addEventListener('message', (ev) => {
         );
         const outputs = response.getOutputs();
         let execution = response.getExecution();
+        console.log('Execution object: ', execution);
         if (execution) {
           let res = aleo.verifyFunctionExecution(
             execution,
@@ -83,7 +84,8 @@ self.addEventListener('message', (ev) => {
             'verify'
           );
           execution = execution.toString();
-          console.log('Execution verified successfully: ' + res + '\n' + execution);
+          console.log('Execution verifying result: ', res);
+          console.log('Execution object string: ' + execution);
         } else {
           execution = '';
         }
